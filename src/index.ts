@@ -54,3 +54,5 @@ export {
     mathPrimitives,
     typePrimitives,
 } from './primitives'
+
+export { deserializeSExpr, serializeSExpr } from './sexpr'

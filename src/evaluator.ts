@@ -153,7 +153,7 @@ export function createEvaluator(options: EvaluatorOptions = {}) {
                 const fn = evaluate(args[0] as SExpr, env, depth + 1)
                 const fnArgs = evaluate(args[1] as SExpr, env, depth + 1) as Value[]
                 if (isLambda(fn)) {
-                    const callEnv = { ...fn.closure }
+                    const callEnv = { ...fn.closure, ...env }
                     fn.params.forEach((param, i) => {
                         callEnv[param] = fnArgs[i] as Value
                     })
@@ -169,7 +169,7 @@ export function createEvaluator(options: EvaluatorOptions = {}) {
                 const list = evaluate(listExpr as SExpr, env, depth + 1) as Value[]
                 if (isLambda(pred)) {
                     return list.filter((item) => {
-                        const callEnv = { ...pred.closure }
+                        const callEnv = { ...pred.closure, ...env }
                         callEnv[pred.params[0] as string] = item
                         return evaluate(pred.body, callEnv, depth + 1)
                     })
@@ -187,7 +187,7 @@ export function createEvaluator(options: EvaluatorOptions = {}) {
                 const list = evaluate(listExpr as SExpr, env, depth + 1) as Value[]
                 if (isLambda(mapper)) {
                     return list.map((item) => {
-                        const callEnv = { ...mapper.closure }
+                        const callEnv = { ...mapper.closure, ...env }
                         callEnv[mapper.params[0] as string] = item
                         return evaluate(mapper.body, callEnv, depth + 1)
                     })
@@ -260,7 +260,7 @@ export function createEvaluator(options: EvaluatorOptions = {}) {
                     const fn = evaluate(rest[0] as SExpr, env, depth + 1)
                     if (isLambda(fn)) {
                         for (const item of list) {
-                            const callEnv = { ...fn.closure }
+                            const callEnv = { ...fn.closure, ...env }
                             callEnv[fn.params[0] as string] = acc
                             callEnv[fn.params[1] as string] = item
                             acc = evaluate(fn.body, callEnv, depth + 1)
@@ -279,7 +279,7 @@ export function createEvaluator(options: EvaluatorOptions = {}) {
             if (isLambda(opValue)) {
                 // Call user-defined function
                 const evaluatedArgs = args.map((arg) => evaluate(arg as SExpr, env, depth + 1))
-                const callEnv = { ...opValue.closure }
+                const callEnv = { ...opValue.closure, ...env }
                 opValue.params.forEach((param, i) => {
                     callEnv[param] = evaluatedArgs[i] as Value
                 })
@@ -300,7 +300,7 @@ export function createEvaluator(options: EvaluatorOptions = {}) {
             const evaluatedOp = evaluate(op as SExpr, env, depth + 1)
             if (isLambda(evaluatedOp)) {
                 const evaluatedArgs = args.map((arg) => evaluate(arg as SExpr, env, depth + 1))
-                const callEnv = { ...evaluatedOp.closure }
+                const callEnv = { ...evaluatedOp.closure, ...env }
                 evaluatedOp.params.forEach((param, i) => {
                     callEnv[param] = evaluatedArgs[i] as Value
                 })

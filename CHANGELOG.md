@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.0] - 2025-12-24
+
+### Added
+
+- Exported `deserializeSExpr` and `serializeSExpr` helpers so downstream compilers can round-trip AST data without reimplementing conversions.
+
+### Fixed
+
+- Lambda invocations now merge the caller environment with the closure scope, ensuring host-provided bindings (e.g., `context`) stay visible during nested calls.
+
 ## [1.0.0] - 2025-12-24
 
 ### Added
