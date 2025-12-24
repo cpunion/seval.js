@@ -2,6 +2,8 @@
 
 > S-expression evaluator for TypeScript/JavaScript
 
+[![CI](https://github.com/cpunion/seval.js/actions/workflows/ci.yml/badge.svg)](https://github.com/cpunion/seval.js/actions/workflows/ci.yml)
+[![Codecov](https://codecov.io/gh/cpunion/seval.js/branch/main/graph/badge.svg)](https://codecov.io/gh/cpunion/seval.js)
 [![npm version](https://img.shields.io/npm/v/seval.svg)](https://www.npmjs.com/package/seval)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
