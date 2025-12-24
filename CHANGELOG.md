@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.1] - 2025-12-24
+
+### Fixed
+
+- `+` now concatenates when any operand is a string, matching the behavior that MiniJS and A2UI runtime expect when building display text.
+
 ## [1.1.0] - 2025-12-24
 
 ### Added

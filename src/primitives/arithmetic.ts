@@ -5,7 +5,12 @@
 import type { PrimitiveFunction } from '../types'
 
 export const arithmeticPrimitives: Record<string, PrimitiveFunction> = {
-    '+': (args) => args.reduce((a, b) => (a as number) + (b as number), 0),
+    '+': (args) => {
+        if (args.some((arg) => typeof arg === 'string')) {
+            return args.reduce((acc, val) => `${acc}${String(val ?? '')}`, '')
+        }
+        return args.reduce((a, b) => (a as number) + (b as number), 0)
+    },
 
     '-': (args) =>
         args.length === 1

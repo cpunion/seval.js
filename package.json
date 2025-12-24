@@ -1,6 +1,6 @@
 {
     "name": "seval.js",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "description": "S-expression evaluator for TypeScript/JavaScript",
     "type": "module",
     "main": "./dist/index.js",
@@ -12,7 +12,9 @@
             "types": "./dist/index.d.ts"
         }
     },
-    "files": ["dist"],
+    "files": [
+        "dist"
+    ],
     "scripts": {
         "build": "tsc",
         "dev": "tsc --watch",
@@ -25,7 +27,13 @@
         "format:check": "biome format --write . && git diff --exit-code",
         "prepublishOnly": "bun run build"
     },
-    "keywords": ["s-expression", "sexp", "lisp", "evaluator", "interpreter"],
+    "keywords": [
+        "s-expression",
+        "sexp",
+        "lisp",
+        "evaluator",
+        "interpreter"
+    ],
     "author": "cpunion",
     "license": "MIT",
     "repository": {
