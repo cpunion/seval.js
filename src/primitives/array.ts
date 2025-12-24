@@ -14,11 +14,10 @@ export const arrayPrimitives: Record<string, PrimitiveFunction> = {
         return arr[arr.length - 1] ?? null
     },
     nth: (args) => (args[0] as Value[])[args[1] as number] ?? null,
-    append: (args) => [...(args[0] as Value[]), args[1]!],
-    prepend: (args) => [args[1]!, ...(args[0] as Value[])],
+    append: (args) => [...(args[0] as Value[]), (args[1] ?? null) as Value],
+    prepend: (args) => [(args[1] ?? null) as Value, ...(args[0] as Value[])],
     'concat-lists': (args) => args.flatMap((a) => a as Value[]),
-    slice: (args) =>
-        (args[0] as Value[]).slice(args[1] as number, args[2] as number | undefined),
+    slice: (args) => (args[0] as Value[]).slice(args[1] as number, args[2] as number | undefined),
     reverse: (args) => [...(args[0] as Value[])].reverse(),
     range: (args) => {
         const start = args.length > 1 ? (args[0] as number) : 0
@@ -31,6 +30,6 @@ export const arrayPrimitives: Record<string, PrimitiveFunction> = {
         return result
     },
     'empty?': (args) => (args[0] as Value[]).length === 0,
-    contains: (args) => (args[0] as Value[]).includes(args[1]!),
-    'index-of': (args) => (args[0] as Value[]).indexOf(args[1]!),
+    contains: (args) => (args[0] as Value[]).includes((args[1] ?? null) as Value),
+    'index-of': (args) => (args[0] as Value[]).indexOf((args[1] ?? null) as Value),
 }

@@ -1,39 +1,40 @@
 {
-  "name": "seval",
-  "version": "0.1.0",
-  "description": "S-expression evaluator for TypeScript/JavaScript",
-  "type": "module",
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "exports": {
-    ".": {
-      "import": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+    "name": "seval",
+    "version": "0.1.0",
+    "description": "S-expression evaluator for TypeScript/JavaScript",
+    "type": "module",
+    "main": "./dist/index.js",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "import": "./dist/index.js",
+            "types": "./dist/index.d.ts"
+        }
+    },
+    "files": ["dist"],
+    "scripts": {
+        "build": "tsc",
+        "dev": "tsc --watch",
+        "test": "bun test",
+        "test:watch": "bun test --watch",
+        "test:coverage": "bun test --coverage",
+        "lint": "biome check .",
+        "lint:fix": "biome check --write .",
+        "format": "biome format --write .",
+        "format:check": "biome format --write . && git diff --exit-code",
+        "prepublishOnly": "bun run build"
+    },
+    "keywords": ["s-expression", "sexp", "lisp", "evaluator", "interpreter"],
+    "author": "cpunion",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/cpunion/seval.js.git"
+    },
+    "devDependencies": {
+        "@biomejs/biome": "^1.9.4",
+        "@types/bun": "latest",
+        "typescript": "^5.7.2"
     }
-  },
-  "files": ["dist"],
-  "scripts": {
-    "build": "tsc",
-    "dev": "tsc --watch",
-    "test": "bun test",
-    "test:watch": "bun test --watch",
-    "test:coverage": "bun test --coverage",
-    "lint": "biome check .",
-    "lint:fix": "biome check --write .",
-    "format": "biome format --write .",
-    "prepublishOnly": "bun run build"
-  },
-  "keywords": ["s-expression", "sexp", "lisp", "evaluator", "interpreter"],
-  "author": "cpunion",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/cpunion/seval.js.git"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "^1.9.4",
-    "@types/bun": "latest",
-    "typescript": "^5.7.2"
-  }
 }

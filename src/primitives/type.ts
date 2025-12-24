@@ -10,6 +10,5 @@ export const typePrimitives: Record<string, PrimitiveFunction> = {
     'string?': (args) => typeof args[0] === 'string',
     'bool?': (args) => typeof args[0] === 'boolean',
     'list?': (args) => Array.isArray(args[0]),
-    'object?': (args) =>
-        args[0] !== null && typeof args[0] === 'object' && !Array.isArray(args[0]),
+    'object?': (args) => args[0] !== null && typeof args[0] === 'object' && !Array.isArray(args[0]),
 }

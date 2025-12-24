@@ -3,7 +3,7 @@
  */
 
 import { describe, expect, it } from 'bun:test'
-import { createEvaluator, isLambda, type Environment } from '../src'
+import { type Environment, createEvaluator, isLambda } from '../src'
 import { parse } from '../src/parser'
 
 const evaluator = createEvaluator()
@@ -139,13 +139,13 @@ describe('Define', () => {
     it('defines a value', () => {
         const env: Environment = {}
         evaluate(parse('(define x 42)'), env)
-        expect(env['x']).toBe(42)
+        expect(env.x).toBe(42)
     })
 
     it('defines a function', () => {
         const env: Environment = {}
         evaluate(parse('(define (square x) (* x x))'), env)
-        expect(isLambda(env['square'])).toBe(true)
+        expect(isLambda(env.square)).toBe(true)
         expect(evaluate(parse('(square 5)'), env)).toBe(25)
     })
 })

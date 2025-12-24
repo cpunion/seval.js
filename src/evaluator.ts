@@ -8,7 +8,7 @@
  * - Strings (typeof === 'string') are string literals, returned as-is
  */
 
-import { type SExpr, parse, isSymbol, symName, sym } from './parser'
+import { type SExpr, isSymbol, parse, sym, symName } from './parser'
 import { defaultPrimitives } from './primitives'
 import type {
     Environment,
@@ -117,7 +117,7 @@ export function createEvaluator(options: EvaluatorOptions = {}) {
                 const [params, body] = args
                 return {
                     __lambda: true,
-                    params: (params as SExpr[]).map((p) => isSymbol(p) ? symName(p) : String(p)),
+                    params: (params as SExpr[]).map((p) => (isSymbol(p) ? symName(p) : String(p))),
                     body: body as SExpr,
                     closure: env,
                 } as LambdaFunction
@@ -130,7 +130,7 @@ export function createEvaluator(options: EvaluatorOptions = {}) {
                     // (define (name args...) body) - function definition shorthand
                     const [nameExpr, ...paramExprs] = first as SExpr[]
                     const name = isSymbol(nameExpr) ? symName(nameExpr) : String(nameExpr)
-                    const params = paramExprs.map(p => isSymbol(p) ? symName(p) : String(p))
+                    const params = paramExprs.map((p) => (isSymbol(p) ? symName(p) : String(p)))
                     const body = args[1]
                     const fn: LambdaFunction = {
                         __lambda: true,

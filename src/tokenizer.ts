@@ -147,7 +147,12 @@ export function tokenize(input: string): Token[] {
 
         if (char === '(') {
             advance()
-            tokens.push({ type: TokenType.LeftParen, value: '(', line: startLine, column: startColumn })
+            tokens.push({
+                type: TokenType.LeftParen,
+                value: '(',
+                line: startLine,
+                column: startColumn,
+            })
         } else if (char === ')') {
             advance()
             tokens.push({

@@ -3,7 +3,7 @@
  */
 
 import { describe, expect, it } from 'bun:test'
-import { parse, stringify } from '../src/parser'
+import { isSymbol, parse, stringify, sym, symName } from '../src/parser'
 
 describe('Parser', () => {
     it('parses numbers', () => {
@@ -19,18 +19,26 @@ describe('Parser', () => {
     })
 
     it('parses symbols', () => {
-        expect(parse('foo')).toBe('foo')
-        expect(parse('+')).toBe('+')
-        expect(parse('bar-baz')).toBe('bar-baz')
+        const foo = parse('foo')
+        expect(isSymbol(foo)).toBe(true)
+        expect(symName(foo as symbol)).toBe('foo')
+
+        const plus = parse('+')
+        expect(isSymbol(plus)).toBe(true)
+        expect(symName(plus as symbol)).toBe('+')
+
+        const barBaz = parse('bar-baz')
+        expect(isSymbol(barBaz)).toBe(true)
+        expect(symName(barBaz as symbol)).toBe('bar-baz')
     })
 
     it('parses lists', () => {
-        expect(parse('(+ 1 2)')).toEqual(['+', 1, 2])
-        expect(parse('(a b c)')).toEqual(['a', 'b', 'c'])
+        expect(parse('(+ 1 2)')).toEqual([sym('+'), 1, 2])
+        expect(parse('(a b c)')).toEqual([sym('a'), sym('b'), sym('c')])
     })
 
     it('parses nested lists', () => {
-        expect(parse('(+ (* 2 3) 4)')).toEqual(['+', ['*', 2, 3], 4])
+        expect(parse('(+ (* 2 3) 4)')).toEqual([sym('+'), [sym('*'), 2, 3], 4])
     })
 
     it('parses empty list', () => {
@@ -38,13 +46,13 @@ describe('Parser', () => {
     })
 
     it('handles whitespace', () => {
-        expect(parse('  (  +  1  2  )  ')).toEqual(['+', 1, 2])
-        expect(parse('(\n\t+\n\t1\n\t2\n)')).toEqual(['+', 1, 2])
+        expect(parse('  (  +  1  2  )  ')).toEqual([sym('+'), 1, 2])
+        expect(parse('(\n\t+\n\t1\n\t2\n)')).toEqual([sym('+'), 1, 2])
     })
 
     it('skips comments', () => {
         expect(parse('; comment\n42')).toBe(42)
-        expect(parse('(+ 1 ; inline comment\n2)')).toEqual(['+', 1, 2])
+        expect(parse('(+ 1 ; inline comment\n2)')).toEqual([sym('+'), 1, 2])
     })
 
     it('throws on unclosed paren', () => {
@@ -72,15 +80,15 @@ describe('Stringify', () => {
     })
 
     it('stringifies symbols', () => {
-        expect(stringify('foo')).toBe('foo')
+        expect(stringify(sym('foo'))).toBe('foo')
     })
 
     it('stringifies lists', () => {
-        expect(stringify(['+', 1, 2])).toBe('(+ 1 2)')
+        expect(stringify([sym('+'), 1, 2])).toBe('(+ 1 2)')
     })
 
     it('stringifies nested lists', () => {
-        expect(stringify(['+', ['*', 2, 3], 4])).toBe('(+ (* 2 3) 4)')
+        expect(stringify([sym('+'), [sym('*'), 2, 3], 4])).toBe('(+ (* 2 3) 4)')
     })
 
     it('round-trips expressions', () => {

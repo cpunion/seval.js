@@ -105,7 +105,7 @@ export function parse(input: string): SExpr {
                 throw new Error('Expected closing quote')
             }
             pos++ // skip closing quote
-            return str  // Plain string, no prefix needed
+            return str // Plain string, no prefix needed
         }
 
         // Atom (number, symbol, boolean)

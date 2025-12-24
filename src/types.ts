@@ -19,17 +19,10 @@ export interface LambdaFunction {
 /**
  * Runtime value types
  */
-export type Value =
-    | string
-    | number
-    | boolean
-    | null
-    | ValueArray
-    | ValueObject
-    | LambdaFunction
+export type Value = string | number | boolean | null | ValueArray | ValueObject | LambdaFunction
 
-export interface ValueArray extends Array<Value> { }
-export interface ValueObject extends Record<string, Value> { }
+export interface ValueArray extends Array<Value> {}
+export interface ValueObject extends Record<string, Value> {}
 
 /**
  * Variable environment (lexical scope)

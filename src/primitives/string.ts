@@ -13,8 +13,7 @@ export const stringPrimitives: Record<string, PrimitiveFunction> = {
     'str-starts-with': (args) => (args[0] as string).startsWith(args[1] as string),
     'str-ends-with': (args) => (args[0] as string).endsWith(args[1] as string),
     'str-contains': (args) => (args[0] as string).includes(args[1] as string),
-    'str-replace': (args) =>
-        (args[0] as string).replace(args[1] as string, args[2] as string),
+    'str-replace': (args) => (args[0] as string).replace(args[1] as string, args[2] as string),
     'str-split': (args) => (args[0] as string).split(args[1] as string),
     'str-join': (args) => (args[0] as Value[]).map(String).join(args[1] as string),
     'str-trim': (args) => (args[0] as string).trim(),

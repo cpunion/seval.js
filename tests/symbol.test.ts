@@ -1,9 +1,9 @@
 /**
  * Symbol-based Parser and Evaluator Tests
  */
-import { describe, it, expect } from 'bun:test'
-import { parse, stringify, isSymbol, sym, symName } from '../src/parser'
+import { describe, expect, it } from 'bun:test'
 import { createEvaluator } from '../src/evaluator'
+import { isSymbol, parse, stringify, sym, symName } from '../src/parser'
 
 describe('Parser with Symbol', () => {
     it('parses identifier as Symbol', () => {

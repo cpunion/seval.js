@@ -14,8 +14,7 @@ export const arithmeticPrimitives: Record<string, PrimitiveFunction> = {
 
     '*': (args) => args.reduce((a, b) => (a as number) * (b as number), 1),
 
-    '/': (args) =>
-        args.slice(1).reduce((a, b) => (a as number) / (b as number), args[0] as number),
+    '/': (args) => args.slice(1).reduce((a, b) => (a as number) / (b as number), args[0] as number),
 
     '%': (args) => (args[0] as number) % (args[1] as number),
 }
