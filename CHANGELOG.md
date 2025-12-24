@@ -11,6 +11,7 @@ All notable changes to this project will be documented in this file.
 - Mini runtime APIs (`createEvaluator`, `evalString`, `evaluate`) with support for custom primitives and lambda closures.
 - Comprehensive Bun/Vitest test suites and CI workflow with linting, formatting, coverage reporting, and Codecov upload.
 - Documentation covering installation, usage examples, and licensing.
+- Published on npm as `seval.js` (renamed from the earlier `seval` package to avoid conflicts).
 
 ---
 

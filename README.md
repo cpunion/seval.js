@@ -1,26 +1,26 @@
-# seval
+# seval.js
 
 > S-expression evaluator for TypeScript/JavaScript
 
 [![CI](https://github.com/cpunion/seval.js/actions/workflows/ci.yml/badge.svg)](https://github.com/cpunion/seval.js/actions/workflows/ci.yml)
 [![Codecov](https://codecov.io/gh/cpunion/seval.js/branch/main/graph/badge.svg)](https://codecov.io/gh/cpunion/seval.js)
-[![npm version](https://img.shields.io/npm/v/seval.svg)](https://www.npmjs.com/package/seval)
+[![npm version](https://img.shields.io/npm/v/seval.js.svg)](https://www.npmjs.com/package/seval.js)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-`seval` is a safe, sandboxed S-expression parser and evaluator. It's designed to be easily extensible and embeddable in JavaScript/TypeScript applications.
+`seval.js` is a safe, sandboxed S-expression parser and evaluator. It's designed to be easily extensible and embeddable in JavaScript/TypeScript applications.
 
 ## Installation
 
 ```bash
-npm install seval
+npm install seval.js
 # or
-bun add seval
+bun add seval.js
 ```
 
 ## Quick Start
 
 ```typescript
-import { evalString, createEvaluator } from 'seval'
+import { evalString, createEvaluator } from 'seval.js'
 
 // Simple evaluation
 evalString('(+ 1 2 3)')     // 6
